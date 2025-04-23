@@ -22,6 +22,8 @@ def load_data():
     response.raise_for_status()
     data = StringIO(response.text)
     df = pd.read_csv(data)
+    print(df.columns.tolist())  # Add this temporarily after df = pd.read_csv(data)
+
     df['EVENT_START_TIMESTAMP'] = pd.to_datetime(df['EVENT_START_TIMESTAMP'], errors='coerce', dayfirst=True)
     return df.dropna(subset=['EVENT_START_TIMESTAMP'])
 
